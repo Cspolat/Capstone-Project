@@ -39,11 +39,6 @@ This project addresses the challenge of determining the true demographic factors
    - Derive insights from the best-performing model.
    - Formulate recommendations based on the classification results.
 
-### Repository Structure
-- `data/`: Dataset and data dictionaries.
-- `notebooks/`: Jupyter notebooks for analysis and model training.
-- `src/`: Source code for data preprocessing and modeling.
-- `README.md`: Documentation of project objectives, methodology, and repository contents.
 
 ## References
 Cross, P. (2021). The Implications of Slowing Growth in Canada's Labour Force. Fraser Institute.
