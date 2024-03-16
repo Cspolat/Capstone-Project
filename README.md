@@ -15,25 +15,32 @@ This project addresses the challenge of determining the true demographic factors
 2. **Data Acquisition**: Obtaining the Canadian Labour Force Survey from Statistics Canada's official website.
 
 3. **Data Preparation**:
-   - Perform descriptive analysis of the dataset.
-   - Convert data types from `int64` and `float64` to `category` and `uint8` for ordinal and nominal data.
-   - Apply one-hot encoding to nominal data.
-   - Impute missing values for union status using Multinomial Logistic Regression and Random Forest.
-
+   - Performing descriptive analysis of the dataset.
+   - Converting data types from `int64` and `float64` to `category` and `uint8` for ordinal and nominal data.
+   - Applying one-hot encoding to nominal data.
+   - Removing the columns with missing values
+   - Dealing with missing values
+         **Alternative methods**:
+        The three models were developed using the each alternatives below separately.
+        -Imputation: The features `NAICS_21` and `NOC_10` (with 37045/108024 missing values) and `Union` (with 52795 missing values) imputed.
+        -Removing: `Union` was removed completely, and the rows with the missing values for `NAICS_21` and `NOC_10` was removed. Then, the             further analysis was conducted with 70979 instances.
+        -Imputation and Removing: With this alternative, `Union` was removed completely, and the missing values for `NAICS_21` and `NOC_10`            were imputed.
+         * The missing values for `Union` was not imputed because the reason for the missing values was the unemployment itself. It was                checked by filtering the category 1 (from employment status-which is Employed) by the union categories. It was observed that all             the missing values in Union were coming from the Unemployed (Category 0).
+     - Applying `SMOTE` to deal with imbalanced data. The class data in the first two alternatives above were imbalanced. These technique           was applied to address class imbalance.
 4. **Feature Engineering**:
-   - Binarize the `lfsstat` variable to create a balanced binary class attribute.
-   - Select features based on missing values and Spearman’s Rank Correlation.
-   - Conduct model-based feature selection if necessary.
+   - Binarizing the `lfsstat` variable to create a balanced binary class attribute. (Originally there were 4 categories: Employed, at work;       Employed, absent from work; Unemployed; and Not in labour force. First two were recatogorized into category 1, and the rest in category      0)
+   - Selecting features based on Spearman’s Rank Correlation.
 
 5. **Model Selection and Training**:
-   - Choose Random Forest, Extreme Gradient Boost, and Logistic Regression for their robustness with categorical data.
-   - Split the data using an 80:20 ratio.
-   - Employ 10-fold cross-validation for training and testing.
+   - Choosing Random Forest, Extreme Gradient Boost, and Logistic Regression for their robustness with categorical data.
+   - Spliting the data using an 80:20 ratio.
+   - Employing 10-fold cross-validation for training and testing.
+   - `Hyperparameter Tunining` was performed using `Randomized Search`.
 
 6. **Model Evaluation**:
-   - Execute the three algorithms.
-   - Compare accuracy, precision, recall, and F1 scores.
-   - Use the Friedman test for statistical comparison of the models.
+   - Executing the three algorithms.
+   - Comparing accuracy, precision, recall, and F1 scores.
+   - Using the Friedman test for statistical comparison of the models.
 
 7. **Insight Extraction and Recommendation Formulation**:
    - Derive insights from the best-performing model.
