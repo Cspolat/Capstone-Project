@@ -16,17 +16,15 @@ This project addresses the challenge of determining the true demographic factors
 
 3. **Data Preparation**:
    - Performing descriptive analysis of the dataset.
-   - Converting data types from `int64` and `float64` to `category` and `uint8` for ordinal and nominal data.
+   - Converting data types from `int64` and `float64` to `category` and `uint8` for ordinal and nominal data, respectively.
    - Applying one-hot encoding to nominal data.
-   - Removing the columns with missing values
-   - Dealing with missing values
-   **Alternative methods**:
-     The three models were developed using the each alternatives below separately.
-     -Imputation: The features `NAICS_21` and `NOC_10` (with 37045/108024 missing values) and `Union` (with 52795 missing values) imputed.
-     -Removing: `Union` was removed completely, and the rows with the missing values for `NAICS_21` and `NOC_10` was removed. Then, the             further analysis was conducted with 70979 instances.
-     -Imputation and Removing: With this alternative, `Union` was removed completely, and the missing values for `NAICS_21` and `NOC_10`            were imputed.
-     * The missing values for `Union` was not imputed because the reason for the missing values was the unemployment itself. It was                checked by filtering the category 1 (from employment status-which is Employed) by the union categories. It was observed that all             the missing values in Union were coming from the Unemployed (Category 0).
-     - Applying `SMOTE` to deal with imbalanced data. The class data in the first two alternatives above were imbalanced. These technique           was applied to address class imbalance.
+   - Removing columns with missing values.
+   - Dealing with missing values through various alternative methods. Each of the three models was developed using the alternatives below separately:
+     - **Imputation**: Features `NAICS_21` and `NOC_10` (with 37,045 and 108,024 missing values respectively) and `Union` (with 52,795 missing values) were imputed.
+     - **Removing**: The `Union` column was completely removed, and rows with missing values for `NAICS_21` and `NOC_10` were also removed. Subsequent analysis was then conducted with 70,979 instances.
+     - **Imputation and Removing**: For this alternative, `Union` was removed entirely, and the missing values for `NAICS_21` and `NOC_10` were imputed.
+       - The missing values for `Union` were not imputed because the absence of these values was attributed to unemployment itself. This was verified by filtering the Employment Status Category 1 (Employed) against the Union categories, revealing that all missing values in `Union` originated from the Unemployed group (Category 0).
+   - Applying `SMOTE` to deal with imbalanced data: The class data in the first two alternatives above were imbalanced. The SMOTE technique was applied to address this class imbalance.
 4. **Feature Engineering**:
    - Binarizing the `lfsstat` variable to create a balanced binary class attribute. (Originally there were 4 categories: Employed, at work;       Employed, absent from work; Unemployed; and Not in labour force. First two were recatogorized into category 1, and the rest in category      0)
    - Selecting features based on Spearman’s Rank Correlation.
