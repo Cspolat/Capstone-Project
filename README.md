@@ -20,12 +20,12 @@ This project addresses the challenge of determining the true demographic factors
    - Applying one-hot encoding to nominal data.
    - Removing the columns with missing values
    - Dealing with missing values
-         **Alternative methods**:
-        The three models were developed using the each alternatives below separately.
-        -Imputation: The features `NAICS_21` and `NOC_10` (with 37045/108024 missing values) and `Union` (with 52795 missing values) imputed.
-        -Removing: `Union` was removed completely, and the rows with the missing values for `NAICS_21` and `NOC_10` was removed. Then, the             further analysis was conducted with 70979 instances.
-        -Imputation and Removing: With this alternative, `Union` was removed completely, and the missing values for `NAICS_21` and `NOC_10`            were imputed.
-         * The missing values for `Union` was not imputed because the reason for the missing values was the unemployment itself. It was                checked by filtering the category 1 (from employment status-which is Employed) by the union categories. It was observed that all             the missing values in Union were coming from the Unemployed (Category 0).
+   **Alternative methods**:
+     The three models were developed using the each alternatives below separately.
+     -Imputation: The features `NAICS_21` and `NOC_10` (with 37045/108024 missing values) and `Union` (with 52795 missing values) imputed.
+     -Removing: `Union` was removed completely, and the rows with the missing values for `NAICS_21` and `NOC_10` was removed. Then, the             further analysis was conducted with 70979 instances.
+     -Imputation and Removing: With this alternative, `Union` was removed completely, and the missing values for `NAICS_21` and `NOC_10`            were imputed.
+     * The missing values for `Union` was not imputed because the reason for the missing values was the unemployment itself. It was                checked by filtering the category 1 (from employment status-which is Employed) by the union categories. It was observed that all             the missing values in Union were coming from the Unemployed (Category 0).
      - Applying `SMOTE` to deal with imbalanced data. The class data in the first two alternatives above were imbalanced. These technique           was applied to address class imbalance.
 4. **Feature Engineering**:
    - Binarizing the `lfsstat` variable to create a balanced binary class attribute. (Originally there were 4 categories: Employed, at work;       Employed, absent from work; Unemployed; and Not in labour force. First two were recatogorized into category 1, and the rest in category      0)
