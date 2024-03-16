@@ -20,7 +20,7 @@ This project addresses the challenge of determining the true demographic factors
    - Applying one-hot encoding to nominal data.
    - Removing columns with missing values.
    - Dealing with missing values through various alternative methods. Each of the three models was developed using the alternatives below separately:
-     - **Imputation**: Features `NAICS_21` and `NOC_10` (with 37,045 and 108,024 missing values respectively) and `Union` (with 52,795 missing values) were imputed.
+     - **Imputation**: Features `NAICS_21` and `NOC_10` (with 37,045 missing values out of 108,024) using `KNN`, and `Union` (with 52,795 missing values) were imputed by replacing the all missing values with category 0(refers to not a union member).
      - **Removing**: The `Union` column was completely removed, and rows with missing values for `NAICS_21` and `NOC_10` were also removed. Subsequent analysis was then conducted with 70,979 instances.
      - **Imputation and Removing**: For this alternative, `Union` was removed entirely, and the missing values for `NAICS_21` and `NOC_10` were imputed.
        - The missing values for `Union` were not imputed because the absence of these values was attributed to unemployment itself. This was verified by filtering the Employment Status Category 1 (Employed) against the Union categories, revealing that all missing values in `Union` originated from the Unemployed group (Category 0).
