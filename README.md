@@ -3,14 +3,14 @@ CIND820
 
 # Project: Predicting Employment Status in Canada
 
-# Title: Can Machine Learning Algorithms Accurately Predict Individuals' Employment Status Based on Occupation, Immigration Levels, Unionization, and Other Demographic Factors?
+# Title: Can Machine Learning Algorithms Accurately Predict Individuals' Employment Status Based on Occupation, Immigration Levels, and Other Demographic Factors?
 
 ## Approach
-This project addresses the challenge of determining the true demographic factors influencing employment status in Canada, with a specific focus on the role of occupation, immigration and unionization. 
+This project addresses the challenge of determining the true demographic factors influencing employment status in Canada, with a specific focus on the role of occupation, and immigration. 
 
 ### Stages of the Project
 
-1. **Problem Identification**: Understanding the influence of immigration status and unionization on employment status and identifying other demographic factors leading to unemployment.
+1. **Problem Identification**: Understanding the influence of immigration status and occupations on employment status and identifying other demographic factors leading to unemployment.
 
 2. **Data Acquisition**: Obtaining the Canadian Labour Force Survey from Statistics Canada's official website.
 
@@ -20,11 +20,11 @@ This project addresses the challenge of determining the true demographic factors
    - Applying one-hot encoding to nominal data.
    - Removing columns with missing values.
    - Dealing with missing values through various alternative methods. Each of the three models was developed using the alternatives below separately:
-     - **Imputation**: Features `NAICS_21` and `NOC_10` (with 37,045 missing values out of 108,024) using `KNN`, and `Union` (with 52,795 missing values) were imputed by replacing the all missing values with category 0(refers to not a union member).
-     - **Removing**: The `Union` column was completely removed, and rows with missing values for `NAICS_21` and `NOC_10` were also removed. Subsequent analysis was then conducted with 70,979 instances.
-     - **Imputation and Removing**: For this alternative, `Union` was removed entirely, and the missing values for `NAICS_21` and `NOC_10` were imputed.
+     - **ALTERNATIVE_1 Imputation**: Features `NAICS_21` and `NOC_10` (with 37,045 missing values out of 108,024) using `KNN`, and `Union` (with 52,795 missing values) were imputed by replacing the all missing values with category 0(refers to not a union member).
+     - **ALTERNATIVE_2 Removing**: The `Union` column was completely removed, and rows with missing values for `NAICS_21` and `NOC_10` were also removed. Subsequent analysis was then conducted with 70,979 instances.
+     - **ALTERNATIVE_3 Imputation and Removing**: For this alternative, `Union` was removed entirely, and the missing values for `NAICS_21` and `NOC_10` were imputed.
        - The missing values for `Union` were not imputed because the absence of these values was attributed to unemployment itself. This was verified by filtering the Employment Status Category 1 (Employed) against the Union categories, revealing that all missing values in `Union` originated from the Unemployed group (Category 0).
-   - Applying `SMOTE` to deal with imbalanced data: The class data in the first two alternatives above were imbalanced. The SMOTE technique was applied to address this class imbalance.
+   - Applying `SMOTE` to deal with imbalanced data: The class data in the alternative 2 above were imbalanced. The SMOTE technique was applied to address this class imbalance.
 4. **Feature Engineering**:
    - Binarizing the `lfsstat` variable to create a balanced binary class attribute. (Originally there were 4 categories: Employed, at work;       Employed, absent from work; Unemployed; and Not in labour force. First two were recatogorized into category 1, and the rest in category      0)
    - Selecting features based on Spearman’s Rank Correlation.
@@ -37,12 +37,9 @@ This project addresses the challenge of determining the true demographic factors
 
 6. **Model Evaluation**:
    - Executing the three algorithms.
-   - Comparing accuracy, precision, recall, and F1 scores.
+   - Comparing F1 scores for the scenario of using ALTERNATIVE_2 above.
    - Using the Friedman test for statistical comparison of the models.
-
-7. **Insight Extraction and Recommendation Formulation**:
-   - Derive insights from the best-performing model.
-   - Formulate recommendations based on the classification results.
+   - Created two alternative codes for the Alternatives that was created during the data preparation. These codes should be run according to the selection of the method of dealing with missing values. However, the Alternative 2 is selected and its following codes throughout the model selection, training, and evaluation were executed.
 
 
 ## References
@@ -62,7 +59,6 @@ Huot, S., Chen, X., King, C., Painter-Zykmund, E., & Watt, K. (2016). Making dif
 
 Premalatha, N., & Sujatha, S. (2021). An Effective Ensemble Model to Predict Employment Status of Graduates in Higher Educational Institutions. In 2021 Fourth International Conference on Electrical, Computer and Communication Technologies (ICECCT). IEEE.
 
-Statistics Canada (2024). Labour Force Survey: Public Use Microdata File, December 2023. Retrieved from: https://www150.statcan.gc.ca/n1/en/catalogue/71M0001X 
-![image](https://github.com/Cspolat/Capstone-Project/assets/158753541/26fb7a3f-bcaf-4317-85b7-28563469288d)
+Statistics Canada (2024). Labour Force Survey: Public Use Microdata File, December 2023. Retrieved from: https://www150.statcan.gc.ca/n1/en/catalogue/71M0001X
 
 
